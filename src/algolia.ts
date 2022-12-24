@@ -4,7 +4,7 @@ import { Hit } from "@algolia/client-search";
 // From Algolia example
 // https://github.com/algolia/react-instantsearch
 const ALGOLIA_APP_ID = "latency";
-const ALGOLIA_SEARCH_API_KEY = "6be0576ff61c053d5f9a3225e2a90f76";
+// get the key from process.env
 
 type SearchOptions = {
   indexName: string;
@@ -22,7 +22,7 @@ export async function search<TData>({
   hits: Hit<TData>[];
   nextPage: number | undefined;
 }> {
-  const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_SEARCH_API_KEY);
+  const client = algoliasearch(ALGOLIA_APP_ID, process.env.REACT_APP_ALGOLIA_SEARCH_API_KEY);
   const index = client.initIndex(indexName);
 
   console.log("alogolia:search", { indexName, query, pageParam, hitsPerPage });
